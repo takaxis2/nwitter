@@ -1,10 +1,15 @@
-import React from "react";
-import { useState } from "react/cjs/react.production.min";
+import React, { useState } from "react";
+import { dbService } from "../fbase";
 
 const Home = () => {
   const [nWeet, setNweet] = useState("");
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
+    await dbService.collection("nweets").add({
+      nWeet,
+      createdAt: Date.now(),
+    });
+    setNweet("");
   };
   const onChange = (event) => {
     const {
