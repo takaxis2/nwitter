@@ -42,7 +42,6 @@ const Home = ({ userObj }) => {
     } = event;
     setNweet(value);
   };
-
   return (
     <div>
       <form onSubmit={onSubmit}>
