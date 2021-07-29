@@ -4,15 +4,12 @@ import { authService } from "../fbase";
 
 function App() {
   const [init, setinit] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(false);
+
   const [userObj, setUserObj] = useState(null);
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        setLoggedIn(true);
         setUserObj(user);
-      } else {
-        setLoggedIn(false);
       }
       setinit(true);
     });
@@ -21,7 +18,7 @@ function App() {
   return (
     <>
       {init ? (
-        <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} />
+        <AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj} />
       ) : (
         "Initializing"
       )}

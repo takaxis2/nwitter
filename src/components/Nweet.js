@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { dbService } from "../fbase";
 
 const Nweet = ({ nweetObj, isOwner }) => {
@@ -32,16 +31,20 @@ const Nweet = ({ nweetObj, isOwner }) => {
     <div>
       {editing ? (
         <>
-          <form onSubmit={onSubmit}>
-            <input
-              type="text"
-              placeholder="type your changed nweet"
-              value={newNweet}
-              required
-              onChange={onChange}
-            />
-            <input type="submit" value="Update"></input>
-          </form>
+          {isOwner && (
+            <>
+              <form onSubmit={onSubmit}>
+                <input
+                  type="text"
+                  placeholder="type your changed nweet"
+                  value={newNweet}
+                  required
+                  onChange={onChange}
+                />
+                <input type="submit" value="Update"></input>
+              </form>
+            </>
+          )}
           <button onClick={toggleEditing}>Cancel</button>
         </>
       ) : (
