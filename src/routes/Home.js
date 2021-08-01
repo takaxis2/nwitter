@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { dbService, storageService } from "../fbase";
 import Nweet from "../components/Nweet";
-
-import { dbService } from "../fbase";
 
 const Home = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
@@ -31,12 +31,24 @@ const Home = ({ userObj }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    await dbService.collection("nweets").add({
+    let attachmentUrl = "";
+    if (attachment != "") {
+      const attachmentRef = storageService
+        .ref()
+        .child(`${userObj.uid}/${uuidv4()}`);
+      const response = await attachmentRef.putString(attachment, "data_url");
+      attachmentUrl = await response.ref.getDownloadURL();
+    }
+    const nweetObj = {
       text: nweet,
       createdAt: Date.now(),
       creatorId: userObj.uid,
-    });
+      attachmentUrl,
+    };
+    await dbService.collection("nweets").add(nweetObj);
+
     setNweet("");
+    setAttachment("");
   };
   const onChange = (event) => {
     const {
@@ -58,7 +70,7 @@ const Home = ({ userObj }) => {
     };
     reader.readAsDataURL(theFile);
   };
-  const onClearPhoClick = () => setAttachment(null);
+  const onClearAttachment = () => setAttachment(null);
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -69,12 +81,13 @@ const Home = ({ userObj }) => {
           placeholder="What's on your mind?"
           maxLength={120}
         />
+
         <input type="file" accept="image/*" onChange={onFileChange} />
         <input type="submit" value="Ntweet" />
         {attachment && (
           <div>
             <img src={attachment} width="50px" height="50px" />
-            <button onClick={onClearPhoClick}>Clear</button>
+            <button onClick={onClearAttachment}>Clear</button>
           </div>
         )}
       </form>
