@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/takaxis2/nwitter/static/css/main.1e550c53.chunk.css",
+    "main.js": "/takaxis2/nwitter/static/js/main.231b69fc.chunk.js",
+    "main.js.map": "/takaxis2/nwitter/static/js/main.231b69fc.chunk.js.map",
+    "runtime-main.js": "/takaxis2/nwitter/static/js/runtime-main.61737fc1.js",
+    "runtime-main.js.map": "/takaxis2/nwitter/static/js/runtime-main.61737fc1.js.map",
+    "static/js/2.e795e040.chunk.js": "/takaxis2/nwitter/static/js/2.e795e040.chunk.js",
+    "static/js/2.e795e040.chunk.js.map": "/takaxis2/nwitter/static/js/2.e795e040.chunk.js.map",
+    "index.html": "/takaxis2/nwitter/index.html",
+    "static/css/main.1e550c53.chunk.css.map": "/takaxis2/nwitter/static/css/main.1e550c53.chunk.css.map",
+    "static/js/2.e795e040.chunk.js.LICENSE.txt": "/takaxis2/nwitter/static/js/2.e795e040.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.61737fc1.js",
+    "static/js/2.e795e040.chunk.js",
+    "static/css/main.1e550c53.chunk.css",
+    "static/js/main.231b69fc.chunk.js"
+  ]
+}
